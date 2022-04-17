@@ -1,0 +1,8 @@
+.logo{
+  max-height: 75%;
+  max-width: 75%;
+  object-fit: contain;
+  object-position: center bottom;
+  width: auto;
+  padding-bottom: 10%;
+}

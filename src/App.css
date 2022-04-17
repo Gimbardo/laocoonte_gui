@@ -5,6 +5,11 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  width: auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {

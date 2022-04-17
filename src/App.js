@@ -2,22 +2,15 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import Clock from './components/Clock'
-import SearchButton from './components/SearchButton'
-
-const element = <h1>Hello, world</h1>;
-
-function Logo(props) {
-  return <h1>Hello, {props.name}</h1>;
-}
-
-const element2 = <Logo name="Logo" />
+import Logo from './components/Logo'
+import SearchBar from './components/SearchBar'
 
 function App() {
   return (
     <div className="App">
-      <Logo name="cagasburra"/>
+      <Logo />
+      <SearchBar />
       <Clock />
-      <SearchButton />
     </div>
   );
 }
