@@ -1,9 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import Clock from './components/Clock'
 import Logo from './components/Logo'
 import SearchBar from './components/SearchBar'
+import { Link } from "react-router-dom";
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
       <Logo />
       <SearchBar />
       <Clock />
+      <Link to="/search">Search</Link> 
     </div>
   );
 }
