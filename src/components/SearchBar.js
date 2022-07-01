@@ -1,20 +1,30 @@
-import { useLocation, useNavigate } from "react-router-dom";
-  
-export default function SearchBar(){
+import Style from './SearchBar.module.css'
 
-  let navigate = useNavigate(); 
-  const routeChange = () =>{ 
-    let path = `newPath`; 
-    navigate(path);
-  }
+import { FormControl } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
+import { InputGroup } from 'react-bootstrap'
+export default function SearchBar(){
   return (
-  <form action="/search" method="get">
-    <input
-        type="text"
-        id="header-search"
-        placeholder="Search Vulnerabilities"
-        name="s" 
-    />
-    <button type="submit">Search</button>
-  </form>)
+    <Container>
+      <Form action="/search" method="get">
+      <InputGroup>
+        <FormControl
+          size="lg"
+          type="text"
+          id="header-search"
+          placeholder="Search Vulnerabilities"
+          name="s" 
+        />
+        <Button
+          size="lg"
+          variant="success"
+          type="submit">
+            Search
+        </Button>
+        </InputGroup></Form>
+    </Container>
+  )
 }
