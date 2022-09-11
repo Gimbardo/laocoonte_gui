@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import {
@@ -16,6 +16,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <BrowserRouter>
+  <br></br>
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="search" element={<Search />} />

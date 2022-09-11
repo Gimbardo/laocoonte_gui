@@ -4,13 +4,17 @@ import Logo from './components/Logo'
 import SearchBar from './components/SearchBar'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container } from 'react-bootstrap';
 
 function App() {
   return (
-    <div className="App">
-      <Logo />
-      <SearchBar />
-    </div>
+    <Container>
+      <div className="App">
+        <Logo />
+        <SearchBar />
+      </div>
+    </Container>
+    
   );
 }
 
