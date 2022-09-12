@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 import { Form } from 'react-bootstrap'
 import { Container } from 'react-bootstrap'
 import { InputGroup } from 'react-bootstrap'
-export default function SearchBar(){
+export default function SearchBar(props){
   return (
     <Container>
       <Form action="/search" method="get">
@@ -13,6 +13,7 @@ export default function SearchBar(){
           type="text"
           id="header-search"
           placeholder="Search Vulnerabilities"
+          defaultValue={props.searched}
           name="s" 
         />
         <Button

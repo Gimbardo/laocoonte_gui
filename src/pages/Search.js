@@ -8,10 +8,12 @@ import { default as SearchResult } from "./../components/SearchResult"
 const Search = () => {
   const [status, setStatus] = useState('');
   const [list, setList] = useState('');
+  const windowUrl = window.location.search;
+  const params = new URLSearchParams(windowUrl);
 
   useEffect(()=>{
     setStatus('Loading');
-    fetch('http://localhost:5000/search')
+    fetch('http://localhost:5000/search?s='+params.get('s'))
       .then(response => response.json())
       .then(setList)
       .then(()=>setStatus('Success'))
@@ -25,7 +27,7 @@ const Search = () => {
     <Container fluid>
       <Row mt="1" className="align-items-center">
         <Col sm="5" l="4" xl="3"><Logo /></Col>
-        <Col sm="7" l="8" xl="9"><SearchBar /></Col>
+        <Col sm="7" l="8" xl="9"><SearchBar searched={params.get('s')}/></Col>
       </Row>
       <br></br>
       {status === 'Loading' && 
