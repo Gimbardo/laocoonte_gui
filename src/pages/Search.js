@@ -41,7 +41,7 @@ const Search = () => {
     <Container fluid>
       <Row mt="1" className="align-items-center">
         <Col sm="5" l="4" xl="3"><Logo /></Col>
-        <Col sm="7" l="8" xl="9"><SearchBar searched={params.get('s')}/></Col>
+        <Col sm="7" l="8" xl="9"><SearchBar params={params}/></Col>
       </Row>
       <br></br>
       {status === 'Loading' && 

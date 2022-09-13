@@ -4,8 +4,8 @@ import { useState } from 'react'
 import { Form, Collapse } from 'react-bootstrap'
 import { Container } from 'react-bootstrap'
 import { InputGroup } from 'react-bootstrap'
+import FormRange from 'react-bootstrap/esm/FormRange'
 export default function SearchBar(props){
-  const severity = ['Any', 'None', 'Low', 'Medium', 'High', 'Critical']
   const attackVector = ['Any', 'Network', 'Adjacent', 'Local', 'Physical'  ]
   const attackComplexity= ['Any', 'Low', 'High' ]
   const privilegesRequired = [ 'Any', 'None', 'Low', 'High' ]
@@ -16,7 +16,6 @@ export default function SearchBar(props){
   const availability = [ 'Any', 'None', 'Low', 'High' ]
   
  const advancedOptions = [ 
-  { name: 'severity', values: severity},
   { name: 'attackVector', values: attackVector},
   { name: 'attackComplexity', values: attackComplexity},
   { name: 'privilegesRequired', values: privilegesRequired},
@@ -25,6 +24,13 @@ export default function SearchBar(props){
   { name: 'confidentiality', values: confidentiality},
   { name: 'integrity', values: integrity},
   { name: 'availability', values: availability}]
+
+  const startingImpact = props.params.get('impact') ? props.params.get('impact') : '0'
+  const startingExploitability = props.params.get('exploitability') ? props.params.get('exploitability') : '0'
+  const [impact, setImpact] = useState(startingImpact)
+  const [exploitability, setExploitability] = useState(startingExploitability)
+  const handleImpact = ev => setImpact(ev.target.value);
+  const handleExploitability = ev => setExploitability(ev.target.value);
   
   const [open, setOpen] = useState(false);
 
@@ -45,7 +51,7 @@ export default function SearchBar(props){
               type="text"
               id="header-search"
               placeholder="Search Vulnerabilities"
-              defaultValue={props.searched}
+              defaultValue={props.params.get('s')}
               name="s" 
             />
             <Button
@@ -69,8 +75,30 @@ export default function SearchBar(props){
         </Row>
         <Collapse in={open}>
         <Row>
-          {
-            advancedOptions.map((value, i)=>{
+          <Col lg="3" md="6" sm="12">
+            <FormLabel>
+              Minimum Exploitability: {exploitability/10}
+            </FormLabel>
+            <FormRange
+              defaultValue={exploitability}
+              max="100"
+              variant="success"
+              name="exploitability"
+              onChange={handleExploitability}
+            ></FormRange>
+          </Col>
+          <Col lg="3" md="6" sm="12">
+            <FormLabel>
+              Minimum Impact: {impact/10}
+            </FormLabel>
+            <FormRange
+              defaultValue={impact}
+              max="100"
+              name="impact"
+              onChange={handleImpact}
+            ></FormRange>
+          </Col>
+          { advancedOptions.map((value, i)=>{
               return <Col lg="3" md="6" sm="12">
               <FormLabel>
                 {value.name}
@@ -79,6 +107,7 @@ export default function SearchBar(props){
                 size="lg"
                 id={value.name}
                 placeholder="Search Severity"
+                defaultValue={props.params.get(value.name)}
                 name={value.name}
               >
                 {value.values.map((val, i) => {
@@ -97,11 +126,10 @@ export default function SearchBar(props){
               type="text"
               id="issue"
               placeholder="Search Issuer"
-              defaultValue={props.issuer}
+              defaultValue={props.params.get('issuer')}
               name="issuer" 
             />
           </Col>
-          
         </Row>
         </Collapse>
 
