@@ -60,13 +60,15 @@ const Search = () => {
           <th>Id</th>
           <th>description</th>
           <th>assigner</th>
+          <th>impact score</th>
         </tr></thead>
         <tbody>
           {list.map((val, key) => (
               <tr key={key}>
-                <td>{val.id}</td>
-                <td>{val.description}</td>                          
-                <td>{val.assigner}</td>
+              <td>{val.id}</td>
+              <td>{val.description}</td>                          
+              <td>{val.assigner}</td>
+              <td>{val.impactScore}</td>
               </tr>
           ))}
         </tbody>
