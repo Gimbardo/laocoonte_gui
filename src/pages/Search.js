@@ -13,15 +13,19 @@ const Search = () => {
   const params = new URLSearchParams(windowUrl);
   const backendUrl = 'http://localhost:5000/search'
   let nextPath= new URL("http://localhost:3000/search")
-  nextPath.searchParams.append('s', params.get('s'))
+  for (const [key, value] of params) {
+    nextPath.searchParams.append(key, value)
+  }
+  nextPath.searchParams.delete('page')
   nextPath.searchParams.append('page', Number(params.get('page'))+1)
 
-  useEffect(()=> { fetchBackend(params.get('s'), params.get('page')) }, []);
+  useEffect(()=> { fetchBackend(params) }, []);
 
-  function fetchBackend(query, page){
+  function fetchBackend(params){
     const searchUrl = new URL(backendUrl);
-    searchUrl.searchParams.append('s', query)
-    searchUrl.searchParams.append('page', page)
+    for (const [key, value] of params) {
+      searchUrl.searchParams.append(key, value)
+    }
     setStatus('Loading');
     fetch(searchUrl)
       .then(response => response.json())

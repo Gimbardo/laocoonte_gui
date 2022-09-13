@@ -77,9 +77,9 @@ export default function SearchBar(props){
               </FormLabel>
               <FormSelect
                 size="lg"
-                id="severity"
+                id={value.name}
                 placeholder="Search Severity"
-                name="severity" 
+                name={value.name}
               >
                 {value.values.map((val, i) => {
                   return <option>{val}</option>
