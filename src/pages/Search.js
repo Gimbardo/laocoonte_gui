@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from "react";
-import { Container, Row, Col, Table } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { Container, Row, Col, Table, Button } from "react-bootstrap";
 import { default as SearchBar } from "./../components/SearchBar";
 import { default as Logo } from "./../components/Logo"
 import { default as GreenSpinner } from "./../components/GreenSpinner"
@@ -10,18 +11,32 @@ const Search = () => {
   const [list, setList] = useState('');
   const windowUrl = window.location.search;
   const params = new URLSearchParams(windowUrl);
+  const backendUrl = 'http://localhost:5000/search'
+  let nextPath= new URL("http://localhost:3000/search")
+  nextPath.searchParams.append('s', params.get('s'))
+  nextPath.searchParams.append('page', Number(params.get('page'))+1)
 
-  useEffect(()=>{
+  useEffect(()=> { fetchBackend(params.get('s'), params.get('page')) }, []);
+
+  function fetchBackend(query, page){
+    const searchUrl = new URL(backendUrl);
+    searchUrl.searchParams.append('s', query)
+    searchUrl.searchParams.append('page', page)
     setStatus('Loading');
-    fetch('http://localhost:5000/search?s='+params.get('s'))
+    fetch(searchUrl)
       .then(response => response.json())
       .then(setList)
       .then(()=>setStatus('Success'))
       .catch((e)=> {
         setStatus('Error')
-        console.error(e)}
-        );
-   }, []);
+        console.error(e)
+      });
+  }
+
+  let navigate = useNavigate();
+  const increasePage= () =>{
+    fetchBackend(params.get('s'),params.get('page')+1)
+  }
 
   return (
     <Container fluid>
@@ -51,6 +66,7 @@ const Search = () => {
         
       </Table>
       }
+      <Button href={nextPath.toString()} variant="success">Next</Button>
     </Container>
   );
 };

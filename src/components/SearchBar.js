@@ -16,6 +16,13 @@ export default function SearchBar(props){
           defaultValue={props.searched}
           name="s" 
         />
+        <FormControl
+          size="lg"
+          hidden={true}
+          id="page"
+          defaultValue={1}
+          name="page" 
+        />
         <Button
           size="lg"
           variant="success"
