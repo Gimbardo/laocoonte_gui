@@ -31,12 +31,7 @@ const Search = () => {
         setStatus('Error')
         console.error(e)
       });
-  }
-
-  let navigate = useNavigate();
-  const increasePage= () =>{
-    fetchBackend(params.get('s'),params.get('page')+1)
-  }
+    }
 
   return (
     <Container fluid>
