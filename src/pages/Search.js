@@ -13,19 +13,22 @@ const Search = () => {
   const params = new URLSearchParams(windowUrl);
   const backendUrl = 'http://localhost:5000/search'
   let nextPath= new URL("http://localhost:3000/search")
-  for (const [key, value] of params) {
-    nextPath.searchParams.append(key, value)
-  }
+  fixParameters(nextPath)
   nextPath.searchParams.delete('page')
   nextPath.searchParams.append('page', Number(params.get('page'))+1)
 
   useEffect(()=> { fetchBackend(params) }, []);
 
+  function fixParameters(url){
+    for (const [key, value] of params) {
+      if(value!='Any' && value != '' )
+        url.searchParams.append(key, value)
+    }
+  }
+
   function fetchBackend(params){
     const searchUrl = new URL(backendUrl);
-    for (const [key, value] of params) {
-      searchUrl.searchParams.append(key, value)
-    }
+    fixParameters(searchUrl)
     setStatus('Loading');
     fetch(searchUrl)
       .then(response => response.json())
