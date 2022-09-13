@@ -53,14 +53,17 @@ const Search = () => {
 
       <Table hover>
         <thead><tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Info</th>
+          <th>Id</th>
+          <th>description</th>
+          <th>assigner</th>
         </tr></thead>
         <tbody>
-          {list.map(result => (
-            <SearchResult name={result.name} type={result.type}
-                          info={result.info} link={result.link}/>
+          {list.map((val, key) => (
+              <tr key={key}>
+                <td>{val.id}</td>
+                <td>{val.description}</td>                          
+                <td>{val.assigner}</td>
+              </tr>
           ))}
         </tbody>
         
