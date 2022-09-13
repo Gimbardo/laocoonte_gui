@@ -21,7 +21,9 @@ const Search = () => {
 
   function fixParameters(url){
     for (const [key, value] of params) {
-      if(value!='Any' && value != '' )
+      if(!((value==='Any' || value === '') ||
+           ((key === 'exploitability' || key === 'impactScore' ) && value === "0")
+           ) || key === "s")
         url.searchParams.append(key, value)
     }
   }

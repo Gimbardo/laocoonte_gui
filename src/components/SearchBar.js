@@ -25,11 +25,11 @@ export default function SearchBar(props){
   { name: 'integrity', values: integrity},
   { name: 'availability', values: availability}]
 
-  const startingImpact = props.params.get('impact') ? props.params.get('impact') : '0'
+  const startingImpactScore = props.params.get('impactScore') ? props.params.get('impactScore') : '0'
   const startingExploitability = props.params.get('exploitability') ? props.params.get('exploitability') : '0'
-  const [impact, setImpact] = useState(startingImpact)
+  const [impactScore, setImpactScore] = useState(startingImpactScore)
   const [exploitability, setExploitability] = useState(startingExploitability)
-  const handleImpact = ev => setImpact(ev.target.value);
+  const handleImpactScore = ev => setImpactScore(ev.target.value);
   const handleExploitability = ev => setExploitability(ev.target.value);
   
   const [open, setOpen] = useState(false);
@@ -89,13 +89,13 @@ export default function SearchBar(props){
           </Col>
           <Col lg="3" md="6" sm="12">
             <FormLabel>
-              Minimum Impact: {impact/10}
+              Minimum Impact Score: {impactScore/10}
             </FormLabel>
             <FormRange
-              defaultValue={impact}
+              defaultValue={impactScore}
               max="100"
-              name="impact"
-              onChange={handleImpact}
+              name="impactScore"
+              onChange={handleImpactScore}
             ></FormRange>
           </Col>
           { advancedOptions.map((value, i)=>{
