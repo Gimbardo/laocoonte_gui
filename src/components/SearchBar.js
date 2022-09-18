@@ -30,7 +30,7 @@ export default function SearchBar(props){
   const [impactScore, setImpactScore] = useState(startingImpactScore)
   const [exploitabilityScore, setExploitabilityScore] = useState(startingExploitabilityScore)
   const handleImpactScore = ev => setImpactScore(ev.target.value);
-  const handleExploitability = ev => setExploitability(ev.target.value);
+  const handleExploitabilityScore = ev => setExploitabilityScore(ev.target.value);
   
   const [open, setOpen] = useState(false);
 
