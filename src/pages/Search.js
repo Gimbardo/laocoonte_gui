@@ -1,5 +1,4 @@
 import { React, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Table, Button } from "react-bootstrap";
 import { default as SearchBar } from "./../components/SearchBar";
 import { default as Logo } from "./../components/Logo"
@@ -11,10 +10,17 @@ const Search = () => {
   const windowUrl = window.location.search;
   const params = new URLSearchParams(windowUrl);
   const backendUrl = 'http://localhost:5000/search'
-  let nextPath= new URL("http://localhost:3000/search")
+  const frontendUrl = 'http://localhost:3000/search'
+
+  let nextPath = new URL(frontendUrl)
   fixParameters(nextPath)
   nextPath.searchParams.delete('page')
   nextPath.searchParams.append('page', Number(params.get('page'))+1)
+
+  let backPath= new URL(frontendUrl)
+  fixParameters(backPath)
+  backPath.searchParams.delete('page')
+  backPath.searchParams.append('page', Number(params.get('page'))-1)
 
   useEffect(()=> { fetchBackend(params) }, []);
 
@@ -74,7 +80,10 @@ const Search = () => {
         
       </Table>
       }
-      <Button href={nextPath.toString()} variant="success">Next</Button>
+      <Row>
+      <Col md='1'><Button href={backPath.toString()} variant="success">Back</Button></Col>
+      <Col md='1'><Button href={nextPath.toString()} variant="success">Next</Button></Col>
+      </Row>
     </Container>
   );
 };
