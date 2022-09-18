@@ -1,27 +1,19 @@
 import { Col, Row, Button } from 'react-bootstrap'
+import UrlHelper from '../utils/UrlHelper'
 
 export default function NextBackButtons(props){
-
-  const fixParameters = (url) => {
-    for (const [key, value] of params) {
-      if(!((value==='Any' || value === '')
-          || ((key === 'exploitability' || key === 'impactScore' ) && value === "0")
-          ) || key === "s")
-        url.searchParams.append(key, value)
-    }
-  }
 
   const windowUrl = window.location.search;
   const params = new URLSearchParams(windowUrl);
   const actualPage = params.get('page')
 
   let nextPath = new URL(props.url)
-  fixParameters(nextPath)
+  UrlHelper.fixParameters(nextPath, params)
   nextPath.searchParams.delete('page')
   nextPath.searchParams.append('page', Number(params.get('page'))+1)
 
   let backPath= new URL(props.url)
-  fixParameters(backPath)
+  UrlHelper.fixParameters(backPath, params)
   backPath.searchParams.delete('page')
   backPath.searchParams.append('page', Number(params.get('page'))-1)
 

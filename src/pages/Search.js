@@ -5,6 +5,7 @@ import { default as Logo } from "./../components/Logo"
 import { default as GreenSpinner } from "./../components/GreenSpinner"
 import { default as ErrorMessage } from "./../components/ErrorMessage"
 import NextBackButtons from "../components/NextBackButtons";
+import UrlHelper from '../utils/UrlHelper'
 const Search = () => {
   const [status, setStatus] = useState('');
   const [list, setList] = useState('');
@@ -16,18 +17,9 @@ const Search = () => {
 
   useEffect(()=> { fetchBackend(params) }, []);
 
-  function fixParameters(url){
-    for (const [key, value] of params) {
-      if(!((value==='Any' || value === '') ||
-           ((key === 'exploitability' || key === 'impactScore' ) && value === "0")
-           ) || key === "s")
-        url.searchParams.append(key, value)
-    }
-  }
-
   function fetchBackend(params){
     const searchUrl = new URL(backendUrl);
-    fixParameters(searchUrl)
+    UrlHelper.fixParameters(searchUrl, params)
     setStatus('Loading');
     fetch(searchUrl)
       .then(response => response.json())
