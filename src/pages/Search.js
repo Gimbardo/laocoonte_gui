@@ -5,7 +5,6 @@ import { default as SearchBar } from "./../components/SearchBar";
 import { default as Logo } from "./../components/Logo"
 import { default as GreenSpinner } from "./../components/GreenSpinner"
 import { default as ErrorMessage } from "./../components/ErrorMessage"
-import { default as SearchResult } from "./../components/SearchResult"
 const Search = () => {
   const [status, setStatus] = useState('');
   const [list, setList] = useState('');
@@ -65,7 +64,7 @@ const Search = () => {
         <tbody>
           {list.map((val, key) => (
               <tr key={key}>
-              <td>{val.id}</td>
+              <td><a href={"https://nvd.nist.gov/vuln/detail/"+val.id}>{val.id}</a></td>
               <td>{val.description}</td>                          
               <td>{val.assigner}</td>
               <td>{val.impactScore}</td>
