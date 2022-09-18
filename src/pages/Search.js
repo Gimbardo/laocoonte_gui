@@ -4,6 +4,7 @@ import { default as SearchBar } from "./../components/SearchBar";
 import { default as Logo } from "./../components/Logo"
 import { default as GreenSpinner } from "./../components/GreenSpinner"
 import { default as ErrorMessage } from "./../components/ErrorMessage"
+import NextBackButtons from "../components/NextBackButtons";
 const Search = () => {
   const [status, setStatus] = useState('');
   const [list, setList] = useState('');
@@ -11,16 +12,7 @@ const Search = () => {
   const params = new URLSearchParams(windowUrl);
   const backendUrl = 'http://localhost:5000/search'
   const frontendUrl = 'http://localhost:3000/search'
-
-  let nextPath = new URL(frontendUrl)
-  fixParameters(nextPath)
-  nextPath.searchParams.delete('page')
-  nextPath.searchParams.append('page', Number(params.get('page'))+1)
-
-  let backPath= new URL(frontendUrl)
-  fixParameters(backPath)
-  backPath.searchParams.delete('page')
-  backPath.searchParams.append('page', Number(params.get('page'))-1)
+  const max_results = 20;
 
   useEffect(()=> { fetchBackend(params) }, []);
 
@@ -80,10 +72,7 @@ const Search = () => {
         
       </Table>
       }
-      <Row>
-      <Col md='1'><Button href={backPath.toString()} variant="success">Back</Button></Col>
-      <Col md='1'><Button href={nextPath.toString()} variant="success">Next</Button></Col>
-      </Row>
+      <NextBackButtons url={frontendUrl} n_results={list.length} max_results={max_results}/>
     </Container>
   );
 };

@@ -119,15 +119,15 @@ export default function SearchBar(props){
           }
           <Col lg="3" md="6" sm="12">
             <FormLabel>
-              Issuer
+              Assigner
             </FormLabel>
             <FormControl
               size="lg"
               type="text"
-              id="issue"
-              placeholder="Search Issuer"
-              defaultValue={props.params.get('issuer')}
-              name="issuer" 
+              id="assigner"
+              placeholder="Search Assigner"
+              defaultValue={props.params.get('assigner')}
+              name="assigner" 
             />
           </Col>
         </Row>
