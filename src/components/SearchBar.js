@@ -26,9 +26,9 @@ export default function SearchBar(props){
   { name: 'availability', values: availability}]
 
   const startingImpactScore = props.params.get('impactScore') ? props.params.get('impactScore') : '0'
-  const startingExploitability = props.params.get('exploitability') ? props.params.get('exploitability') : '0'
+  const startingExploitabilityScore = props.params.get('exploitabilityScore') ? props.params.get('exploitabilityScore') : '0'
   const [impactScore, setImpactScore] = useState(startingImpactScore)
-  const [exploitability, setExploitability] = useState(startingExploitability)
+  const [exploitabilityScore, setExploitabilityScore] = useState(startingExploitabilityScore)
   const handleImpactScore = ev => setImpactScore(ev.target.value);
   const handleExploitability = ev => setExploitability(ev.target.value);
   
@@ -77,14 +77,14 @@ export default function SearchBar(props){
         <Row>
           <Col lg="3" md="6" sm="12">
             <FormLabel>
-              Minimum Exploitability: {exploitability/10}
+              Minimum Exploitability Score: {exploitabilityScore/10}
             </FormLabel>
             <FormRange
-              defaultValue={exploitability}
+              defaultValue={exploitabilityScore}
               max="100"
               variant="success"
-              name="exploitability"
-              onChange={handleExploitability}
+              name="exploitabilityScore"
+              onChange={handleExploitabilityScore}
             ></FormRange>
           </Col>
           <Col lg="3" md="6" sm="12">
