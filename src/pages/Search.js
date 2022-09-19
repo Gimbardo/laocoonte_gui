@@ -14,7 +14,7 @@ const Search = () => {
   const params = new URLSearchParams(windowUrl);
   const backendUrl = 'http://localhost:5000/search'
   const frontendUrl = 'http://localhost:3000/search'
-  const max_results = 20;
+  const max_results = 50;
 
   useEffect(()=> { fetchBackend(params) }, []);
 
