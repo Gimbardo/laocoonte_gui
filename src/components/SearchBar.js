@@ -72,7 +72,7 @@ export default function SearchBar(props){
           </Button>
         </Row>
         <Collapse in={open}>
-        <Row>
+        <Row className="mt-3">
           <Col lg="3" md="6" sm="12">
             <FormLabel>
               Minimum Exploitability Score: {exploitabilityScore}

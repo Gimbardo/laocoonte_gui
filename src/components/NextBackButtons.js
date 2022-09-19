@@ -28,7 +28,7 @@ export default function NextBackButtons(props){
   }
 
   return(
-    <Row>
+    <Row className="justify-content-end">
       { backButton() }
       { nextButton() }
     </Row>
