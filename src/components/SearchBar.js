@@ -75,11 +75,11 @@ export default function SearchBar(props){
         <Row>
           <Col lg="3" md="6" sm="12">
             <FormLabel>
-              Minimum Exploitability Score: {exploitabilityScore/10}
+              Minimum Exploitability Score: {exploitabilityScore}
             </FormLabel>
             <FormRange
               defaultValue={exploitabilityScore}
-              max="100"
+              max="10"
               variant="success"
               name="exploitabilityScore"
               onChange={handleExploitabilityScore}
@@ -87,11 +87,11 @@ export default function SearchBar(props){
           </Col>
           <Col lg="3" md="6" sm="12">
             <FormLabel>
-              Minimum Impact Score: {impactScore/10}
+              Minimum Impact Score: {impactScore}
             </FormLabel>
             <FormRange
               defaultValue={impactScore}
-              max="100"
+              max="10"
               name="impactScore"
               onChange={handleImpactScore}
             ></FormRange>
