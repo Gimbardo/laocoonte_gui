@@ -10,7 +10,6 @@ export default function SearchBar(props){
   const attackComplexity= ['Any', 'Low', 'High' ]
   const privilegesRequired = [ 'Any', 'None', 'Low', 'High' ]
   const userInteraction = [ 'Any', 'None', 'Required' ]
-  const scope = [ 'Any', 'Unchanged', 'Changed' ]
   const confidentiality = [ 'Any', 'None', 'Low', 'High' ]
   const integrity = [ 'Any', 'None', 'Low', 'High' ]
   const availability = [ 'Any', 'None', 'Low', 'High' ]
@@ -20,7 +19,6 @@ export default function SearchBar(props){
   { name: 'attackComplexity', values: attackComplexity},
   { name: 'privilegesRequired', values: privilegesRequired},
   { name: 'userInteraction', values: userInteraction},
-  { name: 'scope', values: scope},
   { name: 'confidentiality', values: confidentiality},
   { name: 'integrity', values: integrity},
   { name: 'availability', values: availability}]
