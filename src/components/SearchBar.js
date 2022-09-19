@@ -5,6 +5,10 @@ import { Form, Collapse } from 'react-bootstrap'
 import { Container } from 'react-bootstrap'
 import { InputGroup } from 'react-bootstrap'
 import FormRange from 'react-bootstrap/esm/FormRange'
+import DatePicker from 'react-datepicker'
+
+import "react-datepicker/dist/react-datepicker.css";
+
 export default function SearchBar(props){
   const attackVector = ['Any', 'Network', 'Adjacent_Network', 'Local', 'Physical'  ]
   const attackComplexity= ['Any', 'Low', 'High' ]
@@ -31,6 +35,10 @@ export default function SearchBar(props){
   const handleExploitabilityScore = ev => setExploitabilityScore(ev.target.value);
   
   const [open, setOpen] = useState(false);
+  const startMinDate = props.params.get('min_publish_date') ? new Date(props.params.get('min_publish_date')) : ''
+  const [minDate, setMinDate] = useState(startMinDate);
+  const startMaxDate = props.params.get('max_publish_date') ? new Date(props.params.get('max_publish_date')) : ''
+  const [maxDate, setMaxDate] = useState(startMaxDate);
 
   return (
     <Container>
@@ -128,11 +136,35 @@ export default function SearchBar(props){
               name="assigner" 
             />
           </Col>
+          <Col lg="3" md="6" sm="12">
+            <FormLabel>
+              Minimum Publish Date
+            </FormLabel>
+            <DatePicker 
+              name="min_publish_date"
+              id="min_publish_date"
+              className="form-select form-select-lg"
+              selected={minDate}
+              onChange={(date) => setMinDate(date)}
+              dateFormat="yyyy-MM-dd"/>
+          </Col>
+          <Col lg="3" md="6" sm="12">
+            <FormLabel>
+              Maximum Publish Date
+            </FormLabel>
+            <DatePicker
+              name="max_publish_date"
+              id="max_publish_date"
+              className="form-select form-select-lg"
+              selected={maxDate}
+              onChange={(date) => setMaxDate(date)}
+              dateFormat="yyyy-MM-dd"/>
+          </Col>
+          
         </Row>
         </Collapse>
 
       </Form>
-      
     </Container>
   )
 }
