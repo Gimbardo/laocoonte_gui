@@ -35,9 +35,9 @@ export default function SearchBar(props){
   const handleExploitabilityScore = ev => setExploitabilityScore(ev.target.value);
   
   const [open, setOpen] = useState(false);
-  const startMinDate = props.params.get('publishDateMin') ? new Date(props.params.get('min_publish_date')) : ''
+  const startMinDate = props.params.get('publishDateMin') ? new Date(props.params.get('publishDateMin')) : ''
   const [minDate, setMinDate] = useState(startMinDate);
-  const startMaxDate = props.params.get('publishDateMax') ? new Date(props.params.get('max_publish_date')) : ''
+  const startMaxDate = props.params.get('publishDateMax') ? new Date(props.params.get('publishDateMax')) : ''
   const [maxDate, setMaxDate] = useState(startMaxDate);
 
   return (
