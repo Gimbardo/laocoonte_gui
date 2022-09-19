@@ -1,6 +1,6 @@
 const getTableRowClass= (impactScore) => {
   console.log(impactScore)
-  if(Number(impactScore) < 3.3)
+  if(Number(impactScore) < 3.3 || impactScore === undefined)
     return "table-default"
   if(Number(impactScore) < 6.6)
     return "table-warning"
