@@ -141,8 +141,9 @@ export default function SearchBar(props){
               Minimum Publish Date
             </FormLabel>
             <DatePicker 
-              name="min_publish_date"
-              id="min_publish_date"
+              placeholderText="Minimum Publish Date"
+              name="publishDateMin"
+              id="publishDateMin"
               className="form-select form-select-lg"
               selected={minDate}
               onChange={(date) => setMinDate(date)}
@@ -153,8 +154,9 @@ export default function SearchBar(props){
               Maximum Publish Date
             </FormLabel>
             <DatePicker
-              name="max_publish_date"
-              id="max_publish_date"
+              placeholderText="Maximum Publish Date"
+              name="publishDateMax"
+              id="publishDateMax"
               className="form-select form-select-lg"
               selected={maxDate}
               onChange={(date) => setMaxDate(date)}
