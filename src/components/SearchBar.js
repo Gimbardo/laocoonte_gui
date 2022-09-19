@@ -6,7 +6,7 @@ import { Container } from 'react-bootstrap'
 import { InputGroup } from 'react-bootstrap'
 import FormRange from 'react-bootstrap/esm/FormRange'
 export default function SearchBar(props){
-  const attackVector = ['Any', 'Network', 'Adjacent', 'Local', 'Physical'  ]
+  const attackVector = ['Any', 'Network', 'Adjacent_Network', 'Local', 'Physical'  ]
   const attackComplexity= ['Any', 'Low', 'High' ]
   const privilegesRequired = [ 'Any', 'None', 'Low', 'High' ]
   const userInteraction = [ 'Any', 'None', 'Required' ]
